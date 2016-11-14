@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::match(['get', 'post'], 'register', 'RestApi\RestApi@registration');
+
+Route::match(['get', 'post'], 'login', 'RestApi\RestApi@auth');
