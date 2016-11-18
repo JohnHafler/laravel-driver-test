@@ -18,6 +18,12 @@ class RestApi extends Controller
 {
     use AuthenticatesUsers;
 
+    /**
+     * Register a new account
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function registration(Request $request)
     {
         if ($request->get('key') == Config::get('settings.auth-key')) {
@@ -40,6 +46,12 @@ class RestApi extends Controller
         return view('register');
     }
 
+    /**
+     * User authorization
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function auth(Request $request)
     {
         if ($request->get('key') == Config::get('settings.auth-key')) {
@@ -50,6 +62,12 @@ class RestApi extends Controller
         return view('login');
     }
 
+    /**
+     * Adding a new order
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function addOrder(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -73,6 +91,12 @@ class RestApi extends Controller
         ]);
     }
 
+    /**
+     * Get data for map display
+     *
+     * @param Request $request
+     * @return array
+     */
     public function getMapInfo(Request $request)
     {
         $validation = \Illuminate\Support\Facades\Validator::make(
@@ -119,6 +143,11 @@ class RestApi extends Controller
         return view('get-map-info');
     }
 
+    /**
+     * Display all user orders
+     *
+     * @return mixed
+     */
     public function listOrder()
     {
         return view('list-order', [
@@ -126,6 +155,11 @@ class RestApi extends Controller
         ]);
     }
 
+    /**
+     * Login for registration
+     * 
+     * @return string
+     */
     public function username()
     {
         return 'tel';

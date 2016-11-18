@@ -32,6 +32,11 @@ class Orders extends Model
         '_token',
     ];
 
+    /**
+     * Validation rules
+     *
+     * @return array
+     */
     public static function rules()
     {
         return [
@@ -42,6 +47,12 @@ class Orders extends Model
         ];
     }
 
+    /**
+     * Error messages
+     * 
+     * @param $key
+     * @return array
+     */
     public static function  messages($key)
     {
         return [
@@ -50,6 +61,11 @@ class Orders extends Model
         ];
     }
 
+    /**
+     * Determine the status of the order
+     * 
+     * @return mixed
+     */
     public function getStatusOrder()
     {
         $status = [
