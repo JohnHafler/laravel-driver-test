@@ -18,3 +18,15 @@ Route::get('/', function () {
 Route::match(['get', 'post'], 'register', 'RestApi\RestApi@registration');
 
 Route::match(['get', 'post'], 'login', 'RestApi\RestApi@auth');
+
+Route::match(['post'], 'logout', 'RestApi\RestApi@logout');
+
+Route::match(['get', 'post'], 'add-order', 'RestApi\RestApi@addOrder');
+
+Route::match(['get'], 'list-order', 'RestApi\RestApi@listOrder');
+
+Route::match(['get'], 'get-map-info', 'RestApi\RestApi@getMapInfo');
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index');
