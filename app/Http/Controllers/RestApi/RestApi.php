@@ -71,7 +71,7 @@ class RestApi extends Controller
     public function addOrder(Request $request)
     {
         if ($request->isMethod('post')) {
-            $validation = \Illuminate\Support\Facades\Validator::make(
+            $validation = Validator::make(
                 $request->all(),
                 Orders::rules(),
                 Orders::messages($request->key)
@@ -99,23 +99,22 @@ class RestApi extends Controller
      */
     public function getMapInfo(Request $request)
     {
-        $validation = \Illuminate\Support\Facades\Validator::make(
-            $request->all(),
-            [
-                'key' => 'required|regex:/^E@3dkCRjzjN9pskGA2~Ya4\?mmPgwvI{K82yz$/',
-                'country_id' => 'required|max:255',
-                'region_id' => 'required|max:255',
-                'id_driver' => 'required|max:255',
-            ],
-            [
-                'regex' => 'Invalide access token: ' . $request->get('key'),
-                'required' => 'Method\' is not defined',
-            ]
-        );
-        if($validation->fails()){
-            return $validation->messages();
-        }
-        if ($request->get('key') == Config::get('settings.auth-key')) {
+        if ($request->get('key') == Config::get('settings.map-key')) {
+            $validation = Validator::make(
+                $request->all(),
+                [
+                    'key' => 'required|regex:/^E@3dkCRjzjN9pskGA2~Ya4\?mmPgwvI{K82yz$/',
+                    'user_location_lat' => 'required|max:255',
+                    'user_location_lng' => 'required|max:255',
+                ],
+                [
+                    'regex' => 'Invalide access token: ' . $request->get('key'),
+                    'required' => 'Method\' is not defined',
+                ]
+            );
+            if($validation->fails()){
+                return $validation->messages();
+            }
             $exampleCar = [
                 'cars' => [
                     "id" => "2",

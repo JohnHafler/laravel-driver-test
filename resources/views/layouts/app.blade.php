@@ -55,6 +55,11 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li>
+                                <a href="{{ url('/get-map-info') }}">
+                                    Get map info
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/add-order') }}">
                                     Add order
                                 </a>
